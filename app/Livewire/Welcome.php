@@ -12,37 +12,24 @@ class Welcome extends Component
 {
     use Toast;
 
-    public string $emailTeacher = 'teacher@demo.com';
-
-    public string $passwordTeacher = '123456';
-    public string $emailParent = 'parent@demo.com';
-
-    public string $passwordParent = '123456';
-
+    public string $email = 'teacher@demo.com';
+    public string $password = '123456';
+    public string $selectedTab = 'teacher';
     public bool $loginModal = false;
-
     public bool $signingIn = false;
 
-    public function login($type)
+    public function login()
     {
 
+        $validated = $this->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
         $this->signingIn = true;
-        if ($type === 'teacher') {
-            $validated = $this->validate([
-                'emailTeacher' => 'required|email',
-                'passwordTeacher' => 'required',
-            ]);
-            if (Auth::guard($type)->attempt(['email' => $validated['emailTeacher'], 'password' => $validated['passwordTeacher']])) {
-                return $this->redirect(route('dashboard.home'), navigate: true);
-            }
-        } else {
-            $validated = $this->validate([
-                'emailParent' => 'required|email',
-                'passwordParent' => 'required',
-            ]);
-            if (Auth::guard($type)->attempt(['email' => $validated['emailParent'], 'password' => $validated['passwordParent']])) {
-                return $this->redirect('/home', navigate: true);
-            }
+
+        if (Auth::guard($this->selectedTab)->attempt($validated)) {
+            return $this->redirect(route('dashboard.home'), navigate: true);
         }
 
         $this->error(
@@ -56,6 +43,7 @@ class Welcome extends Component
 
     public function render()
     {
-        return view('livewire.welcome');
+        $loginOptions = [['id' => 'teacher', 'name' => 'Teachers login'], ['id' => 'parent', 'name' => 'Parents login']];
+        return view('livewire.welcome', ['loginOptions' => $loginOptions]);
     }
 }

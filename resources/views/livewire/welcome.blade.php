@@ -5,7 +5,9 @@
             <ul class="*:text-white *:font-semibold flex items-center gap-5 text-lg">
                 <li>Misión</li>
                 <li>Visión</li>
-                <li><x-mary-theme-toggle /></li>
+                <li>
+                    <x-mary-theme-toggle />
+                </li>
             </ul>
         </div>
     </nav>
@@ -20,36 +22,19 @@
         </div>
     </div>
     <x-mary-modal class="backdrop-blur" title="Inicia Sesión" wire:model='loginModal'>
+        <div class="mb-2 flex justify-center">
+            <x-mary-radio :options="$loginOptions" class="btn-sm" wire:model="selectedTab" />
+        </div>
+        <x-mary-form wire:submit.prevent="login">
+            <x-mary-input icon="o-user" inline label="Email" type="text" wire:model="email" />
+            <x-mary-input icon="o-eye" inline label="Clave" type="password" wire:model="password" />
 
-        <x-mary-tabs selected="teachers-tab">
-            <x-mary-tab icon="o-users" label="Profesores" name="teachers-tab">
-                <x-mary-form wire:submit.prevent="login('teacher')">
-                    <x-mary-input icon="o-user" label="Email" placeholder="email@alam.com" type="text"
-                                  wire:model="emailTeacher" />
-                    <x-mary-input icon="o-eye" label="Clave" type="password" wire:model="passwordTeacher" />
-
-                    <x-slot:actions>
-                        <x-mary-button label="Cancel" x-on:click="$wire.loginModal = false" />
-                        <x-mary-button class="btn-primary" label="Iniciar Sessión" spinner="login" type="submit"
-                                       x-bind:disabled="$wire.signingIn" />
-                    </x-slot:actions>
-                </x-mary-form>
-            </x-mary-tab>
-
-            <x-mary-tab icon="o-sparkles" label="Padres" name="parents-tab">
-                <x-mary-form wire:submit.prevent="login('parent')">
-                    <x-mary-input icon="o-user" label="Email" placeholder="email@alam.com" type="text"
-                                  wire:model="emailParent" />
-                    <x-mary-input icon="o-eye" label="Clave" type="password" wire:model="passwordParent" />
-
-                    <x-slot:actions>
-                        <x-mary-button label="Cancel" x-on:click="$wire.loginModal = false" />
-                        <x-mary-button class="btn-primary" label="Iniciar Sessión" spinner="login" type="submit"
-                                       x-bind:disabled="$wire.signingIn" />
-                    </x-slot:actions>
-                </x-mary-form>
-            </x-mary-tab>
-        </x-mary-tabs>
+            <x-slot:actions>
+                <x-mary-button label="Cancel" x-on:click="$wire.loginModal = false" />
+                <x-mary-button class="btn-primary" label="Iniciar Sessión" spinner="login" type="submit"
+                               x-bind:disabled="$wire.signingIn" />
+            </x-slot:actions>
+        </x-mary-form>
 
     </x-mary-modal>
 </main>
