@@ -10,7 +10,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="min-h-screen">
+<body class="min-h-screen bg-base-200">
 
     {{ $slot }}
     {{--  TOAST area --}}

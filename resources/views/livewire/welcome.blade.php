@@ -31,8 +31,7 @@
 
             <x-slot:actions>
                 <x-mary-button label="Cancel" x-on:click="$wire.loginModal = false" />
-                <x-mary-button class="btn-primary" label="Iniciar Sessión" spinner="login" type="submit"
-                               x-bind:disabled="$wire.signingIn" />
+                <x-mary-button class="btn-primary" label="Iniciar Sessión" spinner="login" type="submit" />
             </x-slot:actions>
         </x-mary-form>
 

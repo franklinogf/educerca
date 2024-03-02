@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dashboard\TeacherController;
 use App\Livewire\Welcome;
 use Illuminate\Support\Facades\Route;
 
@@ -16,9 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', Welcome::class)->name('home');
 
-Route::name('dashboard.')->group(function () {
-    Route::get('/home', function () {
-        return 'Dashboard HOME';
-    })->name('home');
+Route::name('dashboard.')->prefix('dashboard')->group(function () {
+    Route::name('teacher.')->prefix('teacher')->group(function () {
+        Route::get('/home', [TeacherController::class, 'index'])->name('home');
+    });
+
 });
 

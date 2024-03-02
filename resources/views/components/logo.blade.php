@@ -1,1 +1,1 @@
-<a class="text-white" href="/" wire:navigate>EduCerca</a>
+<a class="font-bold" href="/" wire:navigate>EduCerca</a>

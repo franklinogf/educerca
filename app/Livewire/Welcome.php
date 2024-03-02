@@ -16,7 +16,7 @@ class Welcome extends Component
     public string $password = '123456';
     public string $selectedTab = 'teacher';
     public bool $loginModal = false;
-    public bool $signingIn = false;
+
 
     public function login()
     {
@@ -26,10 +26,8 @@ class Welcome extends Component
             'password' => 'required',
         ]);
 
-        $this->signingIn = true;
-
         if (Auth::guard($this->selectedTab)->attempt($validated)) {
-            return $this->redirect(route('dashboard.home'), navigate: true);
+            return $this->redirect(route("dashboard.{$this->selectedTab}.home"));
         }
 
         $this->error(
