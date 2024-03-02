@@ -21,7 +21,12 @@
             <x-mary-button class="btn-primary" label="Iniciar sesión" x-on:click='$wire.loginModal = true' />
         </div>
     </div>
-    <x-mary-modal class="backdrop-blur" title="Inicia Sesión" wire:model='loginModal'>
+    <x-mary-modal class="backdrop-blur" wire:model='loginModal'>
+        <x-mary-header separator>
+            <x-slot:middle>
+                <h1 class="text-4xl font-bold">Inicia Sesión</h1>
+            </x-slot:middle>
+        </x-mary-header>
         <div class="mb-2 flex justify-center">
             <x-mary-radio :options="$loginOptions" class="btn-sm" wire:model="selectedTab" />
         </div>

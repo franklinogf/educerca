@@ -16,10 +16,12 @@ class Welcome extends Component
     public string $password = '123456';
     public string $selectedTab = 'teacher';
     public bool $loginModal = false;
+    public bool $signingIn = false;
 
 
     public function login()
     {
+        $this->signingIn = true;
 
         $validated = $this->validate([
             'email' => 'required|email',
@@ -27,7 +29,7 @@ class Welcome extends Component
         ]);
 
         if (Auth::guard($this->selectedTab)->attempt($validated)) {
-            return $this->redirect(route("dashboard.{$this->selectedTab}.home"));
+            return $this->redirect(route("dashboard.{$this->selectedTab}.home"), navigate: true);
         }
 
         $this->error(
@@ -41,7 +43,7 @@ class Welcome extends Component
 
     public function render()
     {
-        $loginOptions = [['id' => 'teacher', 'name' => 'Teachers login'], ['id' => 'parent', 'name' => 'Parents login']];
+        $loginOptions = [['id' => 'teacher', 'name' => 'Profesor'], ['id' => 'parent', 'name' => 'Padres']];
         return view('livewire.welcome', ['loginOptions' => $loginOptions]);
     }
 }
