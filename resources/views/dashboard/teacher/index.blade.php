@@ -4,12 +4,11 @@
             <div class="flex flex-none justify-center">
                 <span class="text-2xl"><x-logo /></span>
             </div>
-            <x-mary-menu class="flex-auto p-0">
-                <x-mary-menu-item icon="o-envelope" title="Home" />
-                <x-mary-menu-item badge="78+" icon="o-paper-airplane" title="Messages" />
-                <x-mary-menu-item badge-classes="!badge-warning" badge="new" icon="o-sparkles" title="Hello" />
-
-                <x-mary-menu-item icon="o-arrow-down" link="/docs/components/alert" title="Internal link" />
+            <x-mary-menu activate-by-route active-bg-color="bg-primary text-primary-content" class="flex-auto p-0">
+                <x-mary-menu-item :link="route('dashboard.teacher.home')" icon="o-envelope" title="Home" />
+                <x-mary-menu-item icon="o-paper-airplane" title="Cursos" />
+                <x-mary-menu-item icon="o-sparkles" title="Asistencias" />
+                <x-mary-menu-item icon="o-sparkles" title="Foro" />
 
             </x-mary-menu>
             <div class="self-end">
@@ -25,7 +24,10 @@
             </div>
         </aside>
         <main class="p-4">
-            <div class="grid grid-flow-col grid-cols-4 gap-4">
+            <x-mary-header title="Dashboard">
+                <x-slot:actions> <x-mary-theme-toggle /></x-slot:actions>
+            </x-mary-header>
+            <div class="grid grid-flow-col grid-cols-4 gap-8">
                 <x-mary-stat icon="o-envelope" title="Messages" value="44" />
 
                 <x-mary-stat description="This month" icon="o-arrow-trending-up" title="Sales" value="22.124" />
@@ -37,5 +39,5 @@
             </div>
         </main>
     </div>
-    <x-mary-theme-toggle class="hidden" />
+
 </x-layouts.app>
