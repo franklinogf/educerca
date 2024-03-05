@@ -1,8 +1,8 @@
 <main class="hero min-h-screen" style="background-image: url('{{ asset('images/hero-image.jpg') }}');">
     <nav class="navbar fixed top-0">
         <div class="mx-auto flex max-w-full flex-grow justify-between bg-transparent md:max-w-3xl">
-            <x-logo />
-            <ul class="*:text-white *:font-semibold flex items-center gap-5 text-lg">
+            <span class="text-white"><x-logo /></span>
+            <ul class="*:font-semibold *:text-white flex items-center gap-5 text-lg">
                 <li>Misión</li>
                 <li>Visión</li>
                 <li>
