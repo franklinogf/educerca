@@ -3,9 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Teacher;
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
 
 class TeacherSeeder extends Seeder
 {
@@ -14,8 +13,6 @@ class TeacherSeeder extends Seeder
      */
     public function run(): void
     {
-        Teacher::factory()->create([
-            'email' => 'teacher@demo.com',
-        ]);
+        Teacher::factory(10)->create();
     }
 }

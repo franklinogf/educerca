@@ -27,7 +27,7 @@ class TeacherFactory extends Factory
             "email" => fake()->unique()->safeEmail(),
             "password" => Hash::make('123456'),
             "phone" => fake()->unique()->numerify("{$phone3FirstDigits}-###-####"),
-            "dob" => fake()->dateTimeBetween('-50 years', '-30 years')->format('Y-m-d')
+            "dob" => fake()->dateTimeBetween('-50 years', '-30 years')->format('Y-m-d'),
 
         ];
     }

@@ -15,9 +15,22 @@ class Teacher extends Authenticatable
         'email',
         'password'
     ];
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+    protected $casts = [
+        'dob' => 'date:Y-m-d',
+        'password' => 'hashed',
+    ];
 
     public function getFullNameAttribute(): string
     {
         return "$this->name $this->last_name";
+    }
+
+    public function grade()
+    {
+        return $this->hasOne(Grade::class);
     }
 }

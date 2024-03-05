@@ -13,8 +13,8 @@ return new class extends Migration {
     {
         Schema::create('grades', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Teacher::class);
-            $table->string('name');
+            $table->foreignIdFor(Teacher::class)->unique();
+            $table->string('name')->unique();
             $table->timestamps();
         });
     }

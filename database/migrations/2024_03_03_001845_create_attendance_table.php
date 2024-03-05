@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\AttendanceOption;
 use App\Models\Student;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -15,7 +16,7 @@ return new class extends Migration {
             $table->id();
             $table->date('date');
             $table->foreignIdFor(Student::class);
-            $table->foreignId('attendance_option_id');
+            $table->foreignIdFor(AttendanceOption::class);
             $table->timestamps();
         });
     }

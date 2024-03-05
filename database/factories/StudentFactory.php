@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Enums\GenderEnum;
+use App\Models\Grade;
 use App\Models\Parents;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -23,6 +24,7 @@ class StudentFactory extends Factory
         $phone3FirstDigits = fake()->randomElement(['809', '829', '849']);
         return [
             "parents_id" => Parents::factory(),
+            "grade_id" => Grade::all()->random(),
             "name" => fake()->firstName($gender),
             "last_name" => fake()->lastName(),
             "gender" => $gender,

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Grade;
 use App\Models\Parents;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -14,6 +15,7 @@ return new class extends Migration {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Parents::class);
+            $table->foreignIdFor(Grade::class);
             $table->string('name');
             $table->string('last_name');
             $table->string('email')->unique();

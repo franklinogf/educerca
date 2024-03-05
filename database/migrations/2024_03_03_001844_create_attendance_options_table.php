@@ -12,7 +12,8 @@ return new class extends Migration {
     {
         Schema::create('attendance_options', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('option')->unique();
+            $table->string('description', 50)->nullable();
         });
     }
 
