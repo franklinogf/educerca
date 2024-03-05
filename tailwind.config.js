@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-    darkMode: "class",
+    darkMode: "selector",
     content: [
         // You will probably also need these lines
         "./resources/**/**/*.blade.php",
