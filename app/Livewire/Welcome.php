@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Enums\GuardsEnum;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\Layout;
 use Livewire\Component;
@@ -14,10 +15,14 @@ class Welcome extends Component
 
     public string $email = 'teacher@demo.com';
     public string $password = '123456';
-    public string $selectedTab = 'teacher';
+    public string $selectedTab;
     public bool $loginModal = false;
     public bool $signingIn = false;
 
+    public function mount()
+    {
+        $this->selectedTab = GuardsEnum::Teacher->value;
+    }
 
     public function login()
     {
@@ -41,9 +46,15 @@ class Welcome extends Component
 
     }
 
+    public function updatedSelectedTab($tab)
+    {
+        $this->email = $tab === GuardsEnum::Teacher->value ? 'teacher@demo.com' : 'parent@demo.com';
+
+    }
+
     public function render()
     {
-        $loginOptions = [['id' => 'teacher', 'name' => 'Profesor'], ['id' => 'parent', 'name' => 'Padres']];
+        $loginOptions = [['id' => GuardsEnum::Teacher->value, 'name' => GuardsEnum::Teacher->label()], ['id' => GuardsEnum::Parent->value, 'name' => GuardsEnum::Parent->label()]];
         return view('livewire.welcome', ['loginOptions' => $loginOptions]);
     }
 }

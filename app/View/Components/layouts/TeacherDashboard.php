@@ -2,6 +2,7 @@
 
 namespace App\View\Components\layouts;
 
+use App\Enums\GuardsEnum;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -21,7 +22,7 @@ class TeacherDashboard extends Component
      */
     public function render(): View|Closure|string
     {
-        $fullName = auth('teacher')->user()->full_name;
+        $fullName = auth(GuardsEnum::Teacher->value)->user()->full_name;
         return view('components.layouts.teacher-dashboard', ['fullName' => $fullName]);
     }
 }

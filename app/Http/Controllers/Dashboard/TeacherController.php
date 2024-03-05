@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Dashboard;
 
+use App\Enums\GuardsEnum;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,7 @@ class TeacherController extends Controller
 {
     public function index()
     {
-        $teacher = auth('teacher')->user();
+        $teacher = auth(GuardsEnum::Teacher->value)->user();
         $grade = $teacher->grade->name ?? null;
 
         return view('dashboard.teacher.index', ['grade' => $grade]);
@@ -17,7 +18,7 @@ class TeacherController extends Controller
 
     public function logout()
     {
-        auth('teacher')->logout();
+        auth(GuardsEnum::Teacher->value)->logout();
         return redirect()->route('home');
     }
 

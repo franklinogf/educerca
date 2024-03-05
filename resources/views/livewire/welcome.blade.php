@@ -5,9 +5,6 @@
             <ul class="*:font-semibold *:text-white flex items-center gap-5 text-lg">
                 <li>Misión</li>
                 <li>Visión</li>
-                <li>
-                    <x-mary-theme-toggle />
-                </li>
             </ul>
         </div>
     </nav>
@@ -28,7 +25,7 @@
             </x-slot:middle>
         </x-mary-header>
         <div class="mb-2 flex justify-center">
-            <x-mary-radio :options="$loginOptions" class="btn-sm" wire:model="selectedTab" />
+            <x-mary-radio :options="$loginOptions" class="btn-sm" wire:model.live.stop="selectedTab" />
         </div>
         <x-mary-form wire:submit.prevent="login">
             <x-mary-input icon="o-user" inline label="Email" type="text" wire:model="email" />
