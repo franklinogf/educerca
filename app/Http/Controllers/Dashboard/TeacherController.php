@@ -9,6 +9,20 @@ class TeacherController extends Controller
 {
     public function index()
     {
-        return view('dashboard.teacher.index');
+        $teacher = auth('teacher')->user();
+        $grade = $teacher->grade->name ?? null;
+
+        return view('dashboard.teacher.index', ['grade' => $grade]);
+    }
+
+    public function logout()
+    {
+        auth('teacher')->logout();
+        return redirect()->route('home');
+    }
+
+    public function courses()
+    {
+        return view('dashboard.teacher.courses');
     }
 }

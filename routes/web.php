@@ -20,6 +20,8 @@ Route::get('/', Welcome::class)->name('home');
 Route::name('dashboard.')->prefix('dashboard')->group(function () {
     Route::name('teacher.')->prefix('teacher')->group(function () {
         Route::get('/home', [TeacherController::class, 'index'])->name('home');
+        Route::get('/logout', [TeacherController::class, 'logout'])->name('logout');
+        Route::get('/courses', [TeacherController::class, 'courses'])->name('courses');
     });
 
 });
