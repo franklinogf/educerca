@@ -14,7 +14,7 @@
             <div class="self-end">
                 <x-mary-dropdown right>
                     <x-slot:trigger>
-                        <x-mary-button class="btn-primary btn-sm" icon="o-cog-6-tooth" label="Alam Perez" responsive />
+                        <x-mary-button :label="auth('teacher')->user()->fullName" class="btn-primary btn-sm" icon="o-cog-6-tooth" responsive />
                     </x-slot:trigger>
 
                     <x-mary-menu-item icon="o-swatch" title="Cambiar tema"

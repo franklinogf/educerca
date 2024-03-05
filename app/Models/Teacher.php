@@ -15,4 +15,9 @@ class Teacher extends Authenticatable
         'email',
         'password'
     ];
+
+    public function getFullNameAttribute(): string
+    {
+        return "$this->name $this->last_name";
+    }
 }

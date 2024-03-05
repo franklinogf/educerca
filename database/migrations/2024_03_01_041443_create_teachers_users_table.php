@@ -14,8 +14,11 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->string('last_name');
+            $table->char('gender', 1);
             $table->string('email')->unique();
             $table->string('password');
+            $table->string('phone');
+            $table->date('dob');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -14,11 +14,8 @@ class TeacherSeeder extends Seeder
      */
     public function run(): void
     {
-        Teacher::create([
-            'name' => 'Alam',
-            'last_name' => 'Pérez',
+        Teacher::factory()->create([
             'email' => 'teacher@demo.com',
-            'password' => Hash::make('123456'),
         ]);
     }
 }
