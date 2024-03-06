@@ -1,6 +1,6 @@
 <x-layouts.app>
-    <div class="grid min-h-screen max-w-full grid-flow-col grid-cols-[300px_1fr]">
-        <aside class="sticky top-0 flex h-screen flex-col space-y-4 bg-base-100 p-2 shadow">
+    <div class="min-h-screen lg:grid lg:grid-flow-col lg:grid-cols-[300px_1fr]">
+        <aside class="sticky top-0 hidden h-screen flex-col space-y-4 bg-base-100 p-2 shadow lg:flex">
             <div class="flex flex-none justify-center">
                 <span class="text-2xl"><x-logo /></span>
             </div>
@@ -23,11 +23,16 @@
                 </x-mary-dropdown>
             </div>
         </aside>
-        <main class="p-4">
-            <header>
-                <x-mary-header title="Dashboard: {{ $fullName }}">
-                    <x-slot:actions> <x-mary-theme-toggle /></x-slot:actions>
+        <main class="h-full p-4">
+
+            <header class="relative">
+                <x-mary-header size="text-xl lg:text-3xl" title="Dashboard: {{ $fullName }}">
+                    <x-slot:actions>
+                        <x-mary-button class="btn absolute right-1 top-0 lg:hidden" icon="o-bars-3" />
+                        <x-mary-theme-toggle class="hidden lg:block" />
+                    </x-slot:actions>
                 </x-mary-header>
+
             </header>
             {{ $slot }}
         </main>

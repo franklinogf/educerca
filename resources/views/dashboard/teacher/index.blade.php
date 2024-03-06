@@ -1,5 +1,5 @@
 <x-layouts.teacher-dashboard>
-    <div class="grid grid-flow-col grid-cols-4 gap-8">
+    <div class="grid grid-cols-1 gap-3 sm:grid-cols-2 md:gap-8 xl:grid-cols-4">
         @if ($grade)
             <x-mary-stat :value="$grade" icon="o-academic-cap" title="Grado asignado" />
         @else
