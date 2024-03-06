@@ -2,22 +2,21 @@
 
 namespace Database\Seeders;
 
-use App\Models\Grade;
-use App\Models\Teacher;
+use App\Models\Classroom;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class GradeSeeder extends Seeder
+class ClassroomSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        for ($i = 2; $i <= 11; $i++) {
-            Grade::factory()->create([
-                'name' => "{$i}-A"
-            ]);
+        $classrooms = Classroom::factory(10)->create();
+        foreach ($classrooms as $classroom) {
+
         }
+
     }
 }

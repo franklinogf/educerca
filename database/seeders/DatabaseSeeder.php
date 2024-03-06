@@ -3,7 +3,15 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Classroom;
+use App\Models\Grade;
+use App\Models\Teacher;
 use Illuminate\Database\Seeder;
+use Database\Seeders\GradeSeeder;
+use Database\Seeders\ParentsSeeder;
+use Database\Seeders\SubjectSeeder;
+use Database\Seeders\TeacherSeeder;
+use Database\Seeders\AttendanceOptionSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -16,8 +24,19 @@ class DatabaseSeeder extends Seeder
             GradeSeeder::class,
             TeacherSeeder::class,
             ParentsSeeder::class,
-            AttendanceOptionSeeder::class
+            AttendanceOptionSeeder::class,
+            SubjectSeeder::class,
+            ClassroomSeeder::class
         ]);
+
+        $teacher = Teacher::factory()->create([
+            'email' => 'teacher@demo.com',
+        ]);
+        $grade = Grade::factory()->for($teacher)->create([
+            'name' => "1-A"
+        ]);
+        Classroom::factory()->for($teacher)->for($grade)->create();
+
 
 
     }

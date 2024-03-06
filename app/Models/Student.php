@@ -17,4 +17,9 @@ class Student extends Model
         'password' => 'hashed',
         'is_enrroled' => 'boolean'
     ];
+
+    public function classrooms()
+    {
+        return $this->belongsToMany(Classroom::class, 'classroom_student');
+    }
 }

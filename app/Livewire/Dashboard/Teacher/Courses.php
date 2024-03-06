@@ -2,7 +2,8 @@
 
 namespace App\Livewire\Dashboard\Teacher;
 
-use App\Models\Course;
+use App\Enums\GuardsEnum;
+use App\Models\Classroom;
 use App\Models\Grade;
 use App\Models\Note;
 use Illuminate\Support\Arr;
@@ -14,17 +15,17 @@ class Courses extends Component
 {
     public $students = [];
 
-    // public Course $course;
+    public $course;
 
-    public function setCourse($id)
+    private function setCourse($id)
     {
-        // $this->course = Course::find($id);
+        $this->course = Classroom::find($id);
 
     }
 
     public function showStudents(string $grade, string $course_id)
     {
-        // $this->setCourse($course_id);
+        $this->setCourse($course_id);
         // $grade = Grade::with('students')->where('name', $grade)->first();
 
         // foreach ($grade->students as $index => $student) {
@@ -71,8 +72,9 @@ class Courses extends Component
 
     public function render()
     {
-        // $courses = Auth::user()->courses;
-        $courses = [];
+        $courses = auth(GuardsEnum::Teacher->value)->user()->classrooms;
+        // dd($courses[0]->grade->name);
+        // $courses = [];
 
         return view('livewire.dashboard.teacher.courses', ['courses' => $courses]);
     }
