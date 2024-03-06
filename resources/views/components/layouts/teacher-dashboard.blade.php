@@ -4,8 +4,8 @@
             <div class="flex flex-none justify-center">
                 <span class="text-2xl"><x-logo /></span>
             </div>
-            <nav>
-                <x-mary-menu activate-by-route active-bg-color="bg-primary text-primary-content" class="flex-auto p-0">
+            <nav class="flex-auto p-0">
+                <x-mary-menu activate-by-route active-bg-color="bg-primary text-primary-content">
                     <x-mary-menu-item :link="route('dashboard.teacher.home')" icon="o-envelope" title="Home" />
                     <x-mary-menu-item :link="route('dashboard.teacher.courses')" icon="o-paper-airplane" title="Cursos" />
                     <x-mary-menu-item icon="o-sparkles" title="Asistencias" />
