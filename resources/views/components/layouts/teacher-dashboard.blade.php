@@ -28,7 +28,7 @@
         <main class="h-full p-4">
 
             <header class="relative" x-data="{ expanded: false }"
-                    x-on:resize.window="expanded = (window.innerWidth > 1024) ? false : expanded ">
+                    x-on:resize.window.debounce="expanded = (window.innerWidth > 1024) ? false : expanded ">
                 <x-mary-header size="text-xl lg:text-3xl" title="Dashboard: {{ $fullName }}">
                     <x-slot:actions>
                         <x-mary-button class="btn absolute right-1 top-0 lg:hidden" icon="o-bars-3"
