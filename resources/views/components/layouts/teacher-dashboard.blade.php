@@ -4,13 +4,15 @@
             <div class="flex flex-none justify-center">
                 <span class="text-2xl"><x-logo /></span>
             </div>
-            <x-mary-menu activate-by-route active-bg-color="bg-primary text-primary-content" class="flex-auto p-0">
-                <x-mary-menu-item :link="route('dashboard.teacher.home')" icon="o-envelope" title="Home" />
-                <x-mary-menu-item :link="route('dashboard.teacher.courses')" icon="o-paper-airplane" title="Cursos" />
-                <x-mary-menu-item icon="o-sparkles" title="Asistencias" />
-                <x-mary-menu-item icon="o-sparkles" title="Foro" />
+            <nav>
+                <x-mary-menu activate-by-route active-bg-color="bg-primary text-primary-content" class="flex-auto p-0">
+                    <x-mary-menu-item :link="route('dashboard.teacher.home')" icon="o-envelope" title="Home" />
+                    <x-mary-menu-item :link="route('dashboard.teacher.courses')" icon="o-paper-airplane" title="Cursos" />
+                    <x-mary-menu-item icon="o-sparkles" title="Asistencias" />
+                    <x-mary-menu-item icon="o-sparkles" title="Foro" />
 
-            </x-mary-menu>
+                </x-mary-menu>
+            </nav>
             <div class="self-end">
                 <x-mary-dropdown right>
                     <x-slot:trigger>
@@ -25,14 +27,38 @@
         </aside>
         <main class="h-full p-4">
 
-            <header class="relative">
+            <header class="relative" x-data="{ expanded: false }"
+                    x-on:resize.window="expanded = (window.innerWidth > 1024) ? false : expanded ">
                 <x-mary-header size="text-xl lg:text-3xl" title="Dashboard: {{ $fullName }}">
                     <x-slot:actions>
-                        <x-mary-button class="btn absolute right-1 top-0 lg:hidden" icon="o-bars-3" />
+                        <x-mary-button class="btn absolute right-1 top-0 lg:hidden" icon="o-bars-3"
+                                       x-on:click="expanded = ! expanded" />
                         <x-mary-theme-toggle class="hidden lg:block" />
                     </x-slot:actions>
                 </x-mary-header>
+                <div class="mb-5" x-cloak x-collapse x-show="expanded">
+                    <nav class="mb-5">
+                        <x-mary-menu activate-by-route active-bg-color="bg-primary text-primary-content"
+                                     class="flex-auto p-0">
+                            <x-mary-menu-item :link="route('dashboard.teacher.home')" icon="o-envelope" title="Home" />
+                            <x-mary-menu-item :link="route('dashboard.teacher.courses')" icon="o-paper-airplane" title="Cursos" />
+                            <x-mary-menu-item icon="o-sparkles" title="Asistencias" />
+                            <x-mary-menu-item icon="o-sparkles" title="Foro" />
 
+                        </x-mary-menu>
+                    </nav>
+                    <div class="flex justify-end">
+                        <x-mary-dropdown right>
+                            <x-slot:trigger>
+                                <x-mary-button :label="$fullName" class="btn-primary btn-sm" icon="o-cog-6-tooth" />
+                            </x-slot:trigger>
+
+                            <x-mary-menu-item icon="o-swatch" title="Cambiar tema"
+                                              x-on:click.stop="$dispatch('mary-toggle-theme')" />
+                            <x-mary-menu-item :link="route('dashboard.teacher.logout')" icon="o-power" title="Cerrar sesión" />
+                        </x-mary-dropdown>
+                    </div>
+                </div>
             </header>
             {{ $slot }}
         </main>
