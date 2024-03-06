@@ -1,9 +1,10 @@
 <?php
 
 use App\Enums\GuardsEnum;
-use App\Http\Controllers\Dashboard\TeacherController;
 use App\Livewire\Welcome;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Dashboard\Teacher\Courses;
+use App\Http\Controllers\Dashboard\TeacherController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,7 @@ Route::name('dashboard.')->prefix('dashboard')->group(function () {
     Route::middleware('auth:' . GuardsEnum::Teacher->value)->name('teacher.')->prefix('teacher')->group(function () {
         Route::get('/home', [TeacherController::class, 'index'])->name('home');
         Route::get('/logout', [TeacherController::class, 'logout'])->name('logout');
-        Route::get('/courses', [TeacherController::class, 'courses'])->name('courses');
+        Route::get('/courses', Courses::class)->name('courses');
     });
 });
 

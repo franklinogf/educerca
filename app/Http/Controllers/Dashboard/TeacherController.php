@@ -22,8 +22,4 @@ class TeacherController extends Controller
         return redirect()->route('home');
     }
 
-    public function courses()
-    {
-        return view('dashboard.teacher.courses');
-    }
 }
