@@ -63,7 +63,7 @@ class Courses extends Component
 
     public function render()
     {
-        $courses = auth(GuardsEnum::Teacher->value)->user()->classrooms;
+        $courses = auth()->user()->classrooms;
 
         return view('livewire.dashboard.teacher.courses', ['courses' => $courses]);
     }

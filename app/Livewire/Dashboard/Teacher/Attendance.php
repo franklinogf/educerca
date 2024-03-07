@@ -38,7 +38,7 @@ class Attendance extends Component
     #[Computed]
     public function teacher()
     {
-        return Teacher::with('students')->find(auth(GuardsEnum::Teacher->value)->id());
+        return Teacher::with('students')->find(auth()->id());
     }
 
     public function updatedSelectedMonth()

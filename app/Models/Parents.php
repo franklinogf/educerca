@@ -21,4 +21,8 @@ class Parents extends Authenticatable
     {
         return $this->hasMany(Student::class);
     }
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 }

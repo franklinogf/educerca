@@ -43,4 +43,12 @@ class Teacher extends Authenticatable
     {
         return $this->hasManyThrough(Student::class, Grade::class);
     }
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+    public function comments()
+    {
+        return $this->morphMany(Comment::class, 'commentable');
+    }
 }
