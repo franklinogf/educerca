@@ -6,7 +6,7 @@
                 <x-mary-card :subtitle="$course->subject->name" :title="$course->grade->name" class="bg-base-100 shadow-lg"
                              progress-indicator="showStudents('{{ $course->grade->name }}')" separator>
                     <x-mary-button class="btn-primary" label="Mostrar estudiantes"
-                                   wire:click="showStudents('{{ $course->grade->name }}','{{ $course->id }}')" />
+                                   wire:click="showStudents('{{ $course->id }}')" />
                 </x-mary-card>
             @endforeach
         </div>
@@ -22,11 +22,11 @@
             </svg>
         </div>
         @if (count($students) > 0)
-            <div class="mx-auto max-w-3xl bg-white shadow" wire:loading.remove wire:target='showStudents'>
+            <div class="mx-auto max-w-4xl bg-white shadow" wire:loading.remove wire:target='showStudents'>
 
-                <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                <div class="overflow-x-auto shadow-md">
                     <table class="w-full text-left text-sm text-gray-500">
-                        <thead class="bg-primary text-xs uppercase text-white">
+                        <thead class="bg-primary text-xs uppercase text-primary-content">
                             <tr>
                                 <th class="px-6 py-3" scope="col">
                                     Nombre
@@ -41,22 +41,22 @@
                                 </th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="bg-base-100">
                             @foreach ($students as $student)
-                                <tr class="border-b bg-white">
-                                    <th class="whitespace-nowrap px-6 py-4 font-medium text-gray-900" scope="row">
+                                <tr class="border-b">
+                                    <th class="whitespace-nowrap px-4 py-2 font-medium" scope="row">
                                         {{ $student['name'] }} {{ $student['last_name'] }}
                                     </th>
                                     @for ($i = 1; $i <= 4; $i++)
-                                        <td class="px-6 py-4" scope="col">
-                                            <input class="input-primary block w-14 border p-2 text-center text-black"
+                                        <td class="px-4 py-2" scope="col">
+                                            <input class="dark:text-white input-primary block w-14 border p-2 text-center text-black"
                                                    type="text"
-                                                   wire:model.blur.number='students.{{ $loop->index }}.note.nota{{ $i }}'>
+                                                   wire:model.blur.number='notes.{{ $student['id'] }}.note{{ $i }}'>
                                         </td>
                                     @endfor
-                                    <th class="px-6 py-4" scope="col">
-                                        <strong class="w-100 block text-center"
-                                                x-text="$wire.students[{{ $loop->index }}].note.promedio">0</strong>
+                                    <th class="px-4 py-2" scope="col">
+                                        <strong class="w-100 block text-center text-xl"
+                                                x-text="$wire.notes[{{ $student['id'] }}].average"></strong>
                                     </th>
                                 </tr>
                             @endforeach

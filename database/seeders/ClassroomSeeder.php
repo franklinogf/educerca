@@ -14,9 +14,9 @@ class ClassroomSeeder extends Seeder
     public function run(): void
     {
         $classrooms = Classroom::factory(10)->create();
-        foreach ($classrooms as $classroom) {
+        // foreach ($classrooms as $classroom) {
 
-        }
+        // }
 
     }
 }

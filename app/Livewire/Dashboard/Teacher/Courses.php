@@ -6,6 +6,7 @@ use App\Enums\GuardsEnum;
 use App\Models\Classroom;
 use App\Models\Grade;
 use App\Models\Note;
+use App\Models\Student;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -14,6 +15,7 @@ use Livewire\Component;
 class Courses extends Component
 {
     public $students = [];
+    public $notes = [];
 
     public $course;
 
@@ -23,58 +25,43 @@ class Courses extends Component
 
     }
 
-    public function showStudents(string $grade, string $course_id)
+    public function showStudents(string $course_id)
     {
         $this->setCourse($course_id);
-        // $grade = Grade::with('students')->where('name', $grade)->first();
+        $students = Student::where('grade_id', $this->course->grade_id)->get();
+        foreach ($students as $index => $student) {
 
-        // foreach ($grade->students as $index => $student) {
-
-        //     Arr::set($this->students, $index, $student->toArray());
-        //     Arr::set($this->students[$index], 'note', $student->notes()->where('course_id', $course_id)->first()?->toArray() ?? []);
-        // }
+            $this->students[$index] = $student->toArray();
+            $this->notes[$student->id] = $student->notes()->select(['note1', 'note2', 'note3', 'note4', 'average'])->where('classroom_id', $course_id)->first()?->toArray() ?? [];
+        }
     }
 
-    public function updated($name, $value)
+    public function updatedNotes($value, $name)
     {
-        // $noteToUpdate = Str::afterLast($name, '.');
-        // $studentIndex = Str::betweenFirst($name, 's.', '.n');
 
-        // $student = Arr::get($this->students, $studentIndex);
+        [$studentId, $noteToUpdate] = explode('.', $name);
 
-        // $count = 0;
-        // $sum = 0;
-        // for ($i = 1; $i <= 4; $i++) {
-        //     if (isset($student['note']["nota$i"])) {
-        //         $sum += $student['note']["nota$i"];
-        //         $count++;
-        //     }
-        // }
-        // $student['note']['promedio'] = $count === 0 ? null : round($sum / $count);
-        // $this->students[$studentIndex]['note']['promedio'] = $student['note']['promedio'];
-        // if (isset($student['note']['id'])) {
-        //     Note::find($student['note']['id'])->update([
-        //         $noteToUpdate => $value,
-        //         'promedio' => $student['note']['promedio'],
-        //     ]);
+        $student = Student::find($studentId);
 
-        // } else {
-        //     $newNote = Note::create([
-        //         'student_id' => $student['id'],
-        //         'course_id' => $this->course->id,
-        //         $noteToUpdate => $value,
-        //         'promedio' => $student['note']['promedio'],
-        //     ]);
-        //     $this->students[$studentIndex]['note']['id'] = $newNote->id;
-        // }
+        $count = 0;
+        $sum = 0;
+        for ($i = 1; $i <= 4; $i++) {
+            if (isset($this->notes[$studentId]["note$i"])) {
+                $sum += $this->notes[$studentId]["note$i"];
+                $count++;
+            }
+        }
+        $average = $count > 0 ? $sum / $count : 0;
+        $this->notes[$studentId]['average'] = round($average);
+
+        $student->notes()->updateOrCreate(['classroom_id' => $this->course->id], [$noteToUpdate => $value, 'average' => $average]);
+
 
     }
 
     public function render()
     {
         $courses = auth(GuardsEnum::Teacher->value)->user()->classrooms;
-        // dd($courses[0]->grade->name);
-        // $courses = [];
 
         return view('livewire.dashboard.teacher.courses', ['courses' => $courses]);
     }

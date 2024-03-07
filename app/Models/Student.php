@@ -18,8 +18,13 @@ class Student extends Model
         'is_enrroled' => 'boolean'
     ];
 
-    public function classrooms()
+    public function grade()
     {
-        return $this->belongsToMany(Classroom::class, 'classroom_student');
+        return $this->belongsTo(Grade::class);
+    }
+
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
     }
 }

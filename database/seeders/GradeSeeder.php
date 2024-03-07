@@ -14,7 +14,7 @@ class GradeSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 2; $i <= 11; $i++) {
+        for ($i = 2; $i <= 12; $i++) {
             Grade::factory()->create([
                 'name' => "{$i}-A"
             ]);
