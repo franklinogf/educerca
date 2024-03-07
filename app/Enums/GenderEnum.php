@@ -8,7 +8,7 @@ enum GenderEnum: string
     public function label(): string
     {
         return match ($this) {
-            static::Male   => 'Maculino',
+            static::Male   => 'Masculino',
             static::Female => 'Femenino',
         };
     }

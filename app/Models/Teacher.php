@@ -13,7 +13,10 @@ class Teacher extends Authenticatable
         'name',
         'last_name',
         'email',
-        'password'
+        'password',
+        'gender',
+        'phone',
+        'dob'
     ];
     protected $hidden = [
         'password',
