@@ -2,16 +2,18 @@
 
 namespace App\Livewire\Dashboard\Teacher;
 
+use App\Models\Note;
+use App\Models\Grade;
+use App\Models\Student;
+use Livewire\Component;
 use App\Enums\GuardsEnum;
 use App\Models\Classroom;
-use App\Models\Grade;
-use App\Models\Note;
-use App\Models\Student;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
-use Livewire\Component;
+use Livewire\Attributes\Layout;
+use Illuminate\Support\Facades\Auth;
 
+#[Layout('components.layouts.teacher-dashboard')]
 class Courses extends Component
 {
     public $students = [];

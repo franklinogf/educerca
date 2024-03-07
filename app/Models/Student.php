@@ -18,6 +18,11 @@ class Student extends Model
         'is_enrroled' => 'boolean'
     ];
 
+    public function getFullNameAttribute(): string
+    {
+        return "$this->name $this->last_name";
+    }
+
     public function grade()
     {
         return $this->belongsTo(Grade::class);
@@ -26,5 +31,10 @@ class Student extends Model
     public function notes()
     {
         return $this->hasMany(Note::class);
+    }
+
+    public function attendances()
+    {
+        return $this->hasMany(Attendance::class);
     }
 }

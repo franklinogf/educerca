@@ -1,3 +1,6 @@
+@php
+    $fullName = auth()->user()->full_name;
+@endphp
 <x-layouts.app>
     <div class="min-h-screen lg:grid lg:grid-flow-col lg:grid-cols-[300px_1fr]">
         <aside class="sticky top-0 hidden h-screen flex-col space-y-4 bg-base-100 p-2 shadow lg:flex">
@@ -8,7 +11,7 @@
                 <x-mary-menu activate-by-route active-bg-color="bg-primary text-primary-content">
                     <x-mary-menu-item :link="route('dashboard.teacher.home')" icon="o-envelope" title="Home" />
                     <x-mary-menu-item :link="route('dashboard.teacher.courses')" icon="o-paper-airplane" title="Cursos" />
-                    <x-mary-menu-item icon="o-sparkles" title="Asistencias" />
+                    <x-mary-menu-item :link="route('dashboard.teacher.attendance')" icon="o-sparkles" title="Asistencias" />
                     <x-mary-menu-item icon="o-sparkles" title="Foro" />
 
                 </x-mary-menu>
@@ -25,7 +28,7 @@
                 </x-mary-dropdown>
             </div>
         </aside>
-        <main class="h-full p-4">
+        <main class="h-full overflow-x-hidden p-4">
 
             <header class="relative" x-data="{ expanded: false }"
                     x-on:resize.window.debounce="expanded = (window.innerWidth > 1024) ? false : expanded ">
