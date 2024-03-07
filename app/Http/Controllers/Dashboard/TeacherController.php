@@ -10,15 +10,23 @@ class TeacherController extends Controller
 {
     public function index()
     {
-        $teacher = auth(GuardsEnum::Teacher->value)->user();
+        $teacher = auth()->user();
         $grade = $teacher->grade->name ?? null;
+        $amountOfStudents = $teacher->students()->count();
+        $amountOfCourses = $teacher->classrooms()->count();
+        $amountOfPosts = $teacher->posts()->count();
 
-        return view('dashboard.teacher.index', ['grade' => $grade]);
+        return view('dashboard.teacher.index', [
+            'grade' => $grade,
+            'amountOfStudents' => $amountOfStudents,
+            'amountOfCourses' => $amountOfCourses,
+            'amountOfPosts' => $amountOfPosts,
+        ]);
     }
 
     public function logout()
     {
-        auth(GuardsEnum::Teacher->value)->logout();
+        auth()->logout();
         return redirect()->route('home');
     }
 
