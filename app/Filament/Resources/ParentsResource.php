@@ -2,31 +2,26 @@
 
 namespace App\Filament\Resources;
 
-use App\Filament\Resources\TeacherResource\RelationManagers\ClassroomRelationManager;
+use App\Filament\Resources\ParentsResource\RelationManagers\StudentsRelationManager;
 use Filament\Forms;
 use Filament\Tables;
-use App\Models\Teacher;
+use App\Models\Parents;
 use Filament\Forms\Form;
 use App\Enums\GenderEnum;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
-use Filament\Tables\Filters\Filter;
 use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\DatePicker;
-use Filament\Tables\Filters\SelectFilter;
-use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Resources\TeacherResource\Pages;
+use App\Filament\Resources\ParentsResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\TeacherResource\RelationManagers;
+use App\Filament\Resources\ParentsResource\RelationManagers;
 
-class TeacherResource extends Resource
+class ParentsResource extends Resource
 {
-    protected static ?string $model = Teacher::class;
-    protected static ?string $modelLabel = 'profesor';
-    protected static ?string $pluralModelLabel = 'profesores';
-
+    protected static ?string $model = Parents::class;
+    protected static ?string $modelLabel = 'padre';
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
@@ -51,27 +46,19 @@ class TeacherResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('full_name')->label('Nombre')->searchable(['name', 'last_name'])->sortable(['name', 'last_name']),
-                TextColumn::make('grade.name')->label('Grado')->sortable()->alignCenter(),
                 TextColumn::make('email')->label('Correo')->searchable(),
                 TextColumn::make('phone')->label('Teléfono'),
                 TextColumn::make('gender')->label('Genero')->formatStateUsing(fn(string $state): string => match ($state) {
                     GenderEnum::Male->value => GenderEnum::Male->label(),
                     GenderEnum::Female->value => GenderEnum::Female->label(),
                 })->sortable()->alignCenter(),
+                TextColumn::make('students_count')->badge()->label('Estudiantes')->counts('students')->alignCenter()
+
             ])
             ->filters([
-                Filter::make('grade')->label('Con grado')
-                    ->query(fn(Builder $query): Builder => $query->whereHas('grade')),
-                SelectFilter::make('gender')->label('Genero')
-                    ->options([
-                        GenderEnum::Male->value => GenderEnum::Male->label(),
-                        GenderEnum::Female->value => GenderEnum::Female->label(),
-                    ])
-
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -83,16 +70,16 @@ class TeacherResource extends Resource
     public static function getRelations(): array
     {
         return [
-            ClassroomRelationManager::class
+            StudentsRelationManager::class
         ];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListTeachers::route('/'),
-            'create' => Pages\CreateTeacher::route('/create'),
-            'edit' => Pages\EditTeacher::route('/{record}/edit'),
+            'index' => Pages\ListParents::route('/'),
+            'create' => Pages\CreateParents::route('/create'),
+            'edit' => Pages\EditParents::route('/{record}/edit'),
         ];
     }
 }

@@ -17,6 +17,21 @@ class Parents extends Authenticatable
         'dob' => 'date:Y-m-d',
         'password' => 'hashed',
     ];
+    protected $fillable = [
+        'name',
+        'last_name',
+        'email',
+        'password',
+        'gender',
+        'phone',
+        'dob'
+    ];
+
+    protected $table = 'parents';
+    public function getFullNameAttribute(): string
+    {
+        return "$this->name $this->last_name";
+    }
     public function students()
     {
         return $this->hasMany(Student::class);

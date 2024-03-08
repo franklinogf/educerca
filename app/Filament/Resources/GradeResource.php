@@ -2,17 +2,17 @@
 
 namespace App\Filament\Resources;
 
-use App\Models\Teacher;
+use App\Filament\Resources\ParentsResource\RelationManagers\StudentsRelationManager;
 use Filament\Forms;
 use Filament\Tables;
 use App\Models\Grade;
+use App\Models\Teacher;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
-use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\GradeResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\GradeResource\RelationManagers;
@@ -20,6 +20,7 @@ use App\Filament\Resources\GradeResource\RelationManagers;
 class GradeResource extends Resource
 {
     protected static ?string $model = Grade::class;
+    protected static ?string $modelLabel = 'grado';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -60,7 +61,7 @@ class GradeResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            StudentsRelationManager::class
         ];
     }
 

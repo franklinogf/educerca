@@ -17,6 +17,16 @@ class Student extends Model
         'password' => 'hashed',
         'is_enrroled' => 'boolean'
     ];
+    protected $fillable = [
+        'name',
+        'last_name',
+        'email',
+        'password',
+        'gender',
+        'phone',
+        'dob',
+        'is_enrroled'
+    ];
 
     public function getFullNameAttribute(): string
     {
@@ -37,4 +47,9 @@ class Student extends Model
     {
         return $this->hasMany(Attendance::class);
     }
+    public function parent()
+    {
+        return $this->belongsTo(Parents::class, 'parents_id');
+    }
+
 }
