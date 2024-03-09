@@ -5,6 +5,9 @@
             <ul class="*:font-semibold *:text-white flex items-center gap-5 text-lg">
                 <li>Misión</li>
                 <li>Visión</li>
+                @auth('admin')
+                    <li><a href="/admin">Admin</a></li>
+                @endauth
             </ul>
         </div>
     </nav>
