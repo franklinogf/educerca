@@ -14,7 +14,7 @@ class ParentsSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($i = 0; $i < 3; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             $random = fake()->numberBetween(1, 3);
             Parents::factory()->has(
                 Student::factory()->count($random)

@@ -22,7 +22,7 @@ class ParentsResource extends Resource
 {
     protected static ?string $model = Parents::class;
     protected static ?string $modelLabel = 'padre';
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-users';
 
     public static function form(Form $form): Form
     {
@@ -52,7 +52,7 @@ class ParentsResource extends Resource
                     GenderEnum::Male->value => GenderEnum::Male->label(),
                     GenderEnum::Female->value => GenderEnum::Female->label(),
                 })->sortable()->alignCenter(),
-                TextColumn::make('students_count')->badge()->label('Estudiantes')->counts('students')->alignCenter()
+                TextColumn::make('children_count')->badge()->label('Estudiantes')->counts('children')->alignCenter()
 
             ])
             ->filters([

@@ -15,7 +15,7 @@ class Student extends Model
     protected $casts = [
         'dob' => 'date:Y-m-d',
         'password' => 'hashed',
-        'is_enrroled' => 'boolean'
+        'is_enrolled' => 'boolean'
     ];
     protected $fillable = [
         'name',
@@ -25,7 +25,7 @@ class Student extends Model
         'gender',
         'phone',
         'dob',
-        'is_enrroled'
+        'is_enrolled'
     ];
 
     public function getFullNameAttribute(): string
@@ -51,5 +51,8 @@ class Student extends Model
     {
         return $this->belongsTo(Parents::class, 'parents_id');
     }
-
+    public function scopeNotEnrolled($query)
+    {
+        return $query->where('is_enrolled', false);
+    }
 }

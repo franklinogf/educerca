@@ -22,4 +22,9 @@ class Grade extends Model
     {
         return $this->hasMany(Student::class);
     }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

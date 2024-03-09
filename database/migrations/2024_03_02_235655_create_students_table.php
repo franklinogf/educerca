@@ -23,7 +23,7 @@ return new class extends Migration {
             $table->date('dob');
             $table->char('gender', 1);
             $table->string('phone');
-            $table->boolean('is_enrroled')->default(false);
+            $table->boolean('is_enrolled')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

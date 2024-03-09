@@ -13,7 +13,7 @@ class ClassroomSeeder extends Seeder
      */
     public function run(): void
     {
-        $classrooms = Classroom::factory(10)->create();
+        Classroom::factory(15)->create();
         // foreach ($classrooms as $classroom) {
 
         // }

@@ -27,7 +27,7 @@ class TeacherResource extends Resource
     protected static ?string $modelLabel = 'profesor';
     protected static ?string $pluralModelLabel = 'profesores';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
 
     public static function form(Form $form): Form
     {

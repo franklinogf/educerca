@@ -32,9 +32,9 @@ class Parents extends Authenticatable
     {
         return "$this->name $this->last_name";
     }
-    public function students()
+    public function children()
     {
-        return $this->hasMany(Student::class);
+        return $this->hasMany(Student::class, 'parents_id');
     }
     public function comments()
     {

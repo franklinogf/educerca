@@ -9,7 +9,7 @@
             </div>
             <nav class="flex-auto p-0">
                 <x-mary-menu activate-by-route active-bg-color="bg-primary text-primary-content">
-                    @include('components.layouts.partials.teacher-links')
+                    @include('components.layouts.partials.parent-links')
                 </x-mary-menu>
             </nav>
             <div class="self-end">
@@ -20,7 +20,7 @@
 
                     <x-mary-menu-item icon="o-swatch" title="Cambiar tema"
                                       x-on:click.stop="$dispatch('mary-toggle-theme')" />
-                    <x-mary-menu-item :link="route('dashboard.teacher.logout')" icon="o-power" title="Cerrar sesión" />
+                    <x-mary-menu-item :link="route('dashboard.parent.logout')" icon="o-power" title="Cerrar sesión" />
                 </x-mary-dropdown>
             </div>
         </aside>
@@ -39,7 +39,8 @@
                     <nav class="mb-5">
                         <x-mary-menu activate-by-route active-bg-color="bg-primary text-primary-content"
                                      class="flex-auto p-0">
-                            @include('components.layouts.partials.teacher-links')
+                            @include('components.layouts.partials.parent-links')
+
                         </x-mary-menu>
                     </nav>
                     <div class="flex justify-end">
@@ -50,7 +51,7 @@
 
                             <x-mary-menu-item icon="o-swatch" title="Cambiar tema"
                                               x-on:click.stop="$dispatch('mary-toggle-theme')" />
-                            <x-mary-menu-item :link="route('dashboard.teacher.logout')" icon="o-power" title="Cerrar sesión" />
+                            <x-mary-menu-item :link="route('dashboard.parent.logout')" icon="o-power" title="Cerrar sesión" />
                         </x-mary-dropdown>
                     </div>
                 </div>

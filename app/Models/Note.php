@@ -17,4 +17,9 @@ class Note extends Model
         'note4',
         'average'
     ];
+    public function classroom()
+    {
+        return $this->belongsTo(Classroom::class);
+    }
 }
+

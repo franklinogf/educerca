@@ -27,7 +27,7 @@ class StudentResource extends Resource
     protected static ?string $model = Student::class;
     protected static ?string $modelLabel = 'estudiante';
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-identification';
 
     public static function form(Form $form): Form
     {
@@ -48,7 +48,7 @@ class StudentResource extends Resource
                     ->relationship(name: 'parent')
                     ->getOptionLabelFromRecordUsing(fn(Parents $record) => "{$record->name} {$record->last_name}")
                     ->required(),
-                Toggle::make('is_enrroled')->label('Matriculado')->hiddenOn('create')
+                Toggle::make('is_enrolled')->label('Matriculado')->hiddenOn('create')
             ]);
     }
 
@@ -63,7 +63,7 @@ class StudentResource extends Resource
                     GenderEnum::Male->value => GenderEnum::Male->label(),
                     GenderEnum::Female->value => GenderEnum::Female->label(),
                 })->sortable(),
-                IconColumn::make('is_enrroled')->label('Matriculado')
+                IconColumn::make('is_enrolled')->label('Matriculado')
                     ->boolean()->alignCenter()
             ])
             ->filters([
