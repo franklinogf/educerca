@@ -32,7 +32,7 @@ class StudentFactory extends Factory
             "password" => Hash::make('123456'),
             "phone" => fake()->unique()->numerify("{$phone3FirstDigits}-###-####"),
             "dob" => fake()->dateTimeBetween('-18 years', '-5 years')->format('Y-m-d'),
-            "is_enrroled" => fake()->boolean(40)
+            "is_enrolled" => fake()->boolean(40)
         ];
     }
 }
