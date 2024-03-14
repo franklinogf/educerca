@@ -3,6 +3,7 @@
 - Alpine.js
 - Livewire
 - Laravel (Framework)
+  
 
 # Base de datos:
 - MySQL
