@@ -21,6 +21,8 @@ class ParentsSeeder extends Seeder
                     ->state(function (array $attributes, Parents $parent) {
                         return ['last_name' => $parent->last_name];
                     })
+                ,
+                'children'
             )->create();
         }
 
