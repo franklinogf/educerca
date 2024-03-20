@@ -16,10 +16,10 @@
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^v3.4.7",
-        "robsontenorio/mary": "^1.25.2"
+        "robsontenorio/mary": "^1.25.2",
+        "fakerphp/faker": "^1.23.1"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.23.1",
         "laravel/pint": "^1.14.0",
         "laravel/sail": "^1.18",
         "mockery/mockery": "^1.4.4",
