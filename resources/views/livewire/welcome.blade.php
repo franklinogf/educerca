@@ -3,10 +3,9 @@
         <div class="mx-auto flex max-w-full flex-grow justify-between bg-transparent md:max-w-3xl">
             <span class="text-white"><x-logo /></span>
             <ul class="*:font-semibold *:text-white flex items-center gap-5 text-lg">
-                <li>Misión</li>
-                <li>Visión</li>
+                <li>Desarrolladores</li>
                 @auth('admin')
-                    <li><a href="/admin">Admin</a></li>
+                    <li><a class="text-primary" href="/admin">Admin</a></li>
                 @endauth
             </ul>
         </div>
