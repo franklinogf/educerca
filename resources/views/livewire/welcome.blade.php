@@ -3,7 +3,7 @@
         <div class="mx-auto flex max-w-full flex-grow justify-between bg-transparent md:max-w-3xl">
             <span class="text-white"><x-logo /></span>
             <ul class="*:font-semibold *:text-white flex items-center gap-5 text-lg">
-                <li>Desarrolladores</li>
+                <li><x-mary-button class="btn-ghost" label="Desarrolladores" onclick="developers.showModal()" /></li>
                 @auth('admin')
                     <li><a class="text-primary" href="/admin">Admin</a></li>
                 @endauth
@@ -20,7 +20,7 @@
             <x-mary-button class="btn-primary" label="Iniciar sesión" x-on:click='$wire.loginModal = true' />
         </div>
     </div>
-    <x-mary-modal class="z-40 backdrop-blur" wire:model='loginModal'>
+    <x-mary-modal class="z-40 backdrop-blur" persistent wire:model='loginModal'>
         <x-mary-header separator>
             <x-slot:middle>
                 <h1 class="text-4xl font-bold">Inicia Sesión</h1>
@@ -39,5 +39,21 @@
             </x-slot:actions>
         </x-mary-form>
 
+    </x-mary-modal>
+
+    <x-mary-modal class="backdrop-blur" id="developers" persistent>
+        <x-mary-header separator>
+            <x-slot:middle>
+                <h1 class="text-2xl font-bold">Desarrolladores del proyecto</h1>
+            </x-slot:middle>
+        </x-mary-header>
+        <div>
+            @foreach ($developers as $developer)
+                <x-mary-list-item :item="$developer" no-hover sub-value="id" value="name" />
+            @endforeach
+        </div>
+        <x-slot:actions>
+            <x-mary-button label="Cancel" onclick="developers.close()" />
+        </x-slot:actions>
     </x-mary-modal>
 </main>

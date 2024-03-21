@@ -54,7 +54,12 @@ class Welcome extends Component
 
     public function render()
     {
+        $developers = [
+            ['name' => 'Alam Soriano Pérez Figuereo', 'id' => '316-3980'],
+            ['name' => 'Yanerys Espejo López', 'id' => '217-6740'],
+            ['name' => 'Lesly Dayermin Arias De La Rosa', 'id' => '117-6560']
+        ];
         $loginOptions = [['id' => GuardsEnum::Teacher->value, 'name' => GuardsEnum::Teacher->label()], ['id' => GuardsEnum::Parent->value, 'name' => GuardsEnum::Parent->label()]];
-        return view('livewire.welcome', ['loginOptions' => $loginOptions]);
+        return view('livewire.welcome', ['loginOptions' => $loginOptions, 'developers' => $developers]);
     }
 }
