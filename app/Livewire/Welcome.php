@@ -13,8 +13,8 @@ class Welcome extends Component
 {
     use Toast;
 
-    public string $email = 'teacher@demo.com';
-    public string $password = '123456';
+    public string $email = '';
+    public string $password = '';
     public string $selectedTab;
     public bool $loginModal = false;
     public bool $signingIn = false;
@@ -22,6 +22,10 @@ class Welcome extends Component
     public function mount()
     {
         $this->selectedTab = GuardsEnum::Teacher->value;
+        if (app()->environment('local')) {
+            $this->email = 'teacher@demo.com';
+            $this->password = '123456';
+        }
     }
 
     public function login()
@@ -48,7 +52,9 @@ class Welcome extends Component
 
     public function updatedSelectedTab($tab)
     {
-        $this->email = $tab === GuardsEnum::Teacher->value ? 'teacher@demo.com' : 'parent@demo.com';
+        if (app()->environment('local')) {
+            $this->email = $tab === GuardsEnum::Teacher->value ? 'teacher@demo.com' : 'parent@demo.com';
+        }
 
     }
 
