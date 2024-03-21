@@ -1,6 +1,6 @@
 <div class="mx-auto mt-10 max-w-2xl">
     @if (count($students) > 0)
-        <div class="w-full rounded-lg bg-base-100 p-5 text-gray-700 shadow-lg">
+        <div class="w-full rounded-lg bg-base-100 p-5 shadow-lg">
             <div class="w-full pb-5 pt-1">
                 <div
                      class="mx-auto -mt-16 flex h-20 w-20 items-center justify-center overflow-hidden rounded-full bg-primary text-white shadow-lg">
@@ -10,7 +10,7 @@
             <div class="mb-10">
                 <h1 class="text-center text-xl font-bold uppercase text-base-content">Pago seguro</h1>
             </div>
-            <div class="mb-10 space-y-4 rounded-xl bg-gray-300/80 p-5 shadow">
+            <div class="mb-10 space-y-4 rounded-xl bg-gray-300/80 p-5 text-gray-700 shadow">
                 <h2 class="text-xl font-bold">Descripción del pago</h2>
                 @foreach ($students as $student)
                     <div class="flex items-center justify-between" wire:key="{{ $student->id }}">
