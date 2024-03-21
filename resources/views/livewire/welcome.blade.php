@@ -56,4 +56,5 @@
             <x-mary-button label="Cancel" onclick="developers.close()" />
         </x-slot:actions>
     </x-mary-modal>
+    <x-mary-theme-toggle class="hidden" />
 </main>
