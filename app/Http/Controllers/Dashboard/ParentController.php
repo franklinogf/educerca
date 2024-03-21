@@ -12,7 +12,8 @@ class ParentController extends Controller
     public function index()
     {
         $studentCount = auth()->user()->children()->count();
-        return view('dashboard.parent.index', ['studentsCount' => $studentCount]);
+        $studentsNotEnrolled = auth()->user()->children()->notEnrolled()->count();
+        return view('dashboard.parent.index', ['studentsCount' => $studentCount, 'studentsNotEnrolled' => $studentsNotEnrolled]);
     }
     public function logout()
     {
