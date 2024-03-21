@@ -7,6 +7,7 @@
     <meta content="ie=edge" http-equiv="X-UA-Compatible">
     <meta content="{{ csrf_token() }}" name="csrf-token">
     <title>{{ isset($title) ? $title . ' - ' . config('app.name') : config('app.name') }}</title>
+    <link href="logo.svg" rel="icon" />
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
