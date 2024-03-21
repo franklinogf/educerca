@@ -32,7 +32,7 @@
                     <x-slot:actions>
                         <x-mary-button class="btn absolute right-1 top-0 lg:hidden" icon="o-bars-3"
                                        x-on:click="expanded = ! expanded" />
-                        <x-mary-theme-toggle class="hidden lg:block" />
+                        <x-mary-theme-toggle class="hidden lg:inline-grid" />
                     </x-slot:actions>
                 </x-mary-header>
                 <div class="mb-5" x-cloak x-collapse x-show="expanded">
